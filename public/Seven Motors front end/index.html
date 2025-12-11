@@ -1,1 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Seven Motors — Find the right car</title>
+  <meta name="description" content="Seven Motors — trusted car dealership & import services. Import from Japan, estimate KRA duties, buy used and new cars."/>
+  <style>
+    /* ---------- Simple Reset ---------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      line-height:1.4;
+      color:#0b1220;
+      background: linear-gradient(180deg,#f7fbff 0%, #ffffff 100%);
+      -webkit-font-smoothing:antialiased;
+      padding:16px;
+    }
 
+    /* ---------- Layout ---------- */
+    .container{max-width:1100px;margin:18px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .logo svg{width:56px;height:56px}
+    .brand{font-weight:700;font-size:20px;letter-spacing:0.6px}
+    nav ul{display:flex;gap:12px;list-style:none}
+    nav a{padding:8px 12px;border-radius:8px;text-decoration:none;color:inherit;font-weight:600}
+    nav a:hover{background:rgba(11,18,32,0.06)}
+
+    /* ---------- Hero / Search ---------- */
+    .hero{
+      background: linear-gradient(90deg, rgba(19,32,67,0.95), rgba(41,82,147,0.8));
+      color:white;
+      padding:28px;border-radius:12px;margin-bottom:18px;
+      display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:center;
+    }
+    .hero h1{font-size:28px;margin-bottom:8px}
+    .hero p{opacity:0.9;margin-bottom:16px}
+    .search-box{background:rgba(255,255,255,0.12);padding:12px;border-radius:10px}
+    .row{display:flex;gap:8px}
+    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+    select,input[type="number"],input[type="text"]{
+      padding:10px;border-radius:8px;border:none;outline:none;background:rgba(255,255,255,0.16);color:white;font-weight:600
+    }
+    button.primary{background:#ffd166;border:none;padding:10px 14px;border-radius:8px;font-weight:700;cursor:pointer}
+    button.primary:hover{filter:brightness(.95)}
+    .hint{font-size:12px;opacity:0.9}
+
+    /* ---------- Content ---------- */
+    .two-col{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .car-card{background:white;border-radius:10px;padding:8px;box-shadow:0 6px 18px rgba(14,20,30,0.04)}
+    .car-card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+    .car-meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+    .status{font-weight:800;font-size:13px;padding:6px 8px;border-radius:8px}
+    .sold{background:#f0f0f0;color:#888}
+    .price{color:#0b7bdb;font-weight:800}
+
+    /* ---------- Calculator ---------- */
+    .calc{background:#fff;padding:14px;border-radius:12px;box-shadow:0 6px 20px rgba(23,35,56,0.06)}
+    .calc h3{margin-bottom:8px}
+    .calc .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .small{font-size:13px;color:#444}
+    .result{background:linear-gradient(180deg,#111827,#0b1220);color:#fff;padding:12px;border-radius:8px;margin-top:12px}
+    .result .line{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed rgba(255,255,255,0.06)}
+    .total{font-size:18px;font-weight:800;margin-top:8px}
+
+    /* ---------- Footer ---------- */
+    footer{margin-top:22px;padding:12px;color:#58606c;font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .two-col{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <a class="logo" href="#" title="Seven Motors">
+        <!-- Simple, memorable SVG logo (editable) -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- abstract '7' + car silhouette -->
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#3a86ff"/>
+              <stop offset="1" stop-color="#00c2ff"/>
+            </linearGradient>
+          </defs>
+          <rect width="100" height="100" rx="16" fill="url(#g1)"/>
+          <path d="M22 62 L60 62 L72 42 L40 34" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <text x="14" y="88" font-family="Inter" font-size="20" fill="white" font-weight="700">7</text>
+        </svg>
+        <div>
+          <div class="brand">Seven Motors</div>
+          <div style="font-size:12px;color:#6b7280">Cars • Imports • Financing</div>
+        </div>
+      </a>
+
+      <nav aria-label="main navigation">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#cars">Cars</a></li>
+          <li><a href="#import">Import</a></li>
+          <li><a href="#calculator">Duty Calculator</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO + SEARCH -->
+    <section class="hero" aria-label="Find the right car">
+      <div>
+        <h1>Find the right car</h1>
+        <p>Browse our wide selection of used and new cars in Kenya — or import a unit from Japan with Seven Motors. Fast, transparent, and stress-free.</p>
+
+        <div class="search-box" role="search" aria-label="Search cars">
+          <div class="row" style="gap:8px">
+            <div style="flex:1">
+              <label class="small">Manufacturer</label>
+              <select id="manufacturer">
+                <option value="">Any Make</option>
+                <option>Toyota</option><option>Nissan</option><option>Subaru</option><option>Mazda</option><option>Honda</option><option>Mitsubishi</option><option>Mercedes Benz</option><option>BMW</option><option>Ford</option>
+              </select>
+            </div>
+            <div style="width:120px">
+              <label class="small">Year</label>
+              <input id="year" type="number" placeholder="2018" min="1980" max="2025">
+            </div>
+            <div style="width:130px;display:flex;flex-direction:column">
+              <label class="small">Max Price (KES)</label>
+              <input id="maxprice" type="number" placeholder="5,000,000">
+            </div>
+          </div>
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <button class="primary" onclick="alert('Search demo — replace with real search logic')">Search</button>
+            <button style="background:transparent;border:1px solid rgba(255,255,255,0.16);padding:10px 12px;border-radius:8px;color:white" onclick="document.getElementById('manufacturer').value='';document.getElementById('year').value='';document.getElementById('maxprice').value=''">Reset</button>
+          </div>
+        </div>
+
+        <p class="hint" style="margin-top:12px">Want to import? Use our Duty Calculator to estimate KRA charges (editable rates).</p>
+      </div>
+
+      <!-- Quick contact & CTA -->
+      <aside style="color:#fff;display:flex;flex-direction:column;gap:10px;align-items:flex-end">
+        <div style="background:rgba(255,255,255,0.06);padding:10px;border-radius:10px;text-align:center">
+          <div style="font-size:12px">Call / WhatsApp</div>
+          <div style="font-weight:800;font-size:18px">070 753 3344</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.06);padding:12px;border-radius:10px;text-align:center">
+          <div style="font-size:12px">Open</div>
+          <div style="font-weight:700">Mon - Sat • 09:00 - 17:00</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="two-col">
+      <!-- Left: Car Grid + Latest -->
+      <section>
+        <h2 id="cars" style="margin-bottom:12px">Cars in stock now</h2>
+        <div class="card-grid" id="carGrid">
+          <!-- Example car cards (replace images & details as needed) -->
+          <article class="car-card">
+            <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=abcd" alt="2019 Toyota RAV-4">
+            <h3 style="margin-top:8px;font-size:15px">2019 Toyota RAV-4</h3>
+            <div class="car-meta">
+              <span class="price">KES 4,750,000</span>
+              <span class="status sold">SOLD</span>
+            </div>
+            <div style="font-size:13px;color:#64748b;margin-top:8px">25,300 km • 2000 CC • 4WD • Auto</div>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button style="flex:1;padding:8px;border-radius:8px;border:1px solid #e6eefb;background:white;cursor:pointer" onclick="alert('View details demo')">View</button>
+              <button style="flex:1;padding:8px;border-radius:8px;border:none;background:#3a86ff;color:white;cursor:pointer" onclick="window.location.href='tel:0707533344'">Call</button>
+            </div>
+          </article>
+
+          <article class="car-card">
+            <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=efgh" alt="2019 Suzuki Jimny">
+            <h3 style="margin-top:8px;font-size:15px">2019 Suzuki Jimny</h3>
+            <div class="car-meta">
+              <span class="price">KES 3,500,000</span>
+              <span class="status">IN STOCK</span>
+            </div>
+            <div style="font-size:13px;color:#64748b;margin-top:8px">54,000 km • 1500 CC • 4WD • Auto</div>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button style="flex:1;padding:8px;border-radius:8px;border:1px solid #e6eefb;background:white;cursor:pointer">View</button>
+              <button style="flex:1;padding:8px;border-radius:8px;border:none;background:#3a86ff;color:white;cursor:pointer" onclick="window.location.href='tel:0707533344'">Call</button>
+            </div>
+          </article>
+
+          <!-- Add more car-card articles here -->
+        </div>
+
+        <section style="margin-top:18px">
+          <h3>Latest News</h3>
+          <div style="margin-top:8px;background:#fff;padding:12px;border-radius:10px;box-shadow:0 8px 20px rgba(14,20,30,0.04)">
+            <strong>Seven Motors launches easy-import service</strong>
+            <p style="color:#6b7280;margin-top:6px">We help you buy, inspect, ship, clear and register cars from Japan. Contact 070 753 3344.</p>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- Right: Import + Calculator -->
+      <aside>
+        <div class="calc" id="import" aria-labelledby="calculator">
+          <h3 id="calculator">Import Duty Calculator</h3>
+          <p class="small">Estimate KRA charges for importing a vehicle. Default rates reflect recent KRA/CRSP guidance but are editable — update them if KRA changes rules. See links below.</p>
+
+          <!-- Vehicle / CIF inputs -->
+          <div class="grid" style="margin-top:10px">
+            <div>
+              <label class="small">Invoice (USD)</label>
+              <input id="invoice" type="number" min="0" step="0.01" value="5000">
+            </div>
+            <div>
+              <label class="small">Freight (USD)</label>
+              <input id="freight" type="number" min="0" step="0.01" value="800">
+            </div>
+            <div>
+              <label class="small">Insurance (USD)</label>
+              <input id="insurance" type="number" min="0" step="0.01" value="100">
+            </div>
+            <div>
+              <label class="small">Exchange Rate (KES per USD)</label>
+              <input id="exrate" type="number" min="1" step="0.01" value="130">
+            </div>
+            <div>
+              <label class="small">Engine CC</label>
+              <input id="engine" type="number" min="50" step="1" value="1500">
+            </div>
+            <div>
+              <label class="small">Fuel Type</label>
+              <select id="fuel">
+                <option value="gasoline">Gasoline</option>
+                <option value="diesel">Diesel</option>
+                <option value="hybrid">Hybrid</option>
+                <option value="electric">Electric</option>
+              </select>
+            </div>
+          </div>
+
+          <hr style="margin:12px 0;border:none;border-top:1px solid #f1f5f9">
+
+          <!-- Taxes: editable -->
+          <div>
+            <label class="small">Import Duty (%)</label>
+            <input id="importDuty" type="number" min="0" step="0.1" value="35">
+          </div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <div style="flex:1">
+              <label class="small">Excise Duty (%)</label>
+              <!-- default small / large engine split applied in JS if user leaves this 0 -->
+              <input id="exciseDuty" type="number" min="0" step="0.1" value="20">
+            </div>
+            <div style="flex:1">
+              <label class="small">VAT (%)</label>
+              <input id="vat" type="number" min="0" step="0.1" value="16">
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <div style="flex:1">
+              <label class="small">Import Declaration Fee (IDF %)</label>
+              <input id="idf" type="number" min="0" step="0.1" value="3.5">
+            </div>
+            <div style="flex:1">
+              <label class="small">Railway Dev Levy (RDL %)</label>
+              <input id="rdl" type="number" min="0" step="0.1" value="2">
+            </div>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button class="primary" onclick="calculateImport()">Estimate</button>
+            <button onclick="resetCalc()" style="padding:10px;border-radius:8px;background:#f3f4f6;border:none;cursor:pointer">Reset</button>
+          </div>
+
+          <!-- Result -->
+          <div id="resultBox" class="result" style="display:none">
+            <div class="line"><div>Cost in USD (CIF)</div><div id="cifUsd">0</div></div>
+            <div class="line"><div>Cost in KES (CIF × ex.rate)</div><div id="cifKes">0</div></div>
+            <div class="line"><div>Import Duty</div><div id="impDutyVal">0</div></div>
+            <div class="line"><div>Excise Duty</div><div id="exciseVal">0</div></div>
+            <div class="line"><div>VAT</div><div id="vatVal">0</div></div>
+            <div class="line"><div>IDF</div><div id="idfVal">0</div></div>
+            <div class="line"><div>RDL</div><div id="rdlVal">0</div></div>
+            <div class="line"><div>Other (shipping/clearing estimate)</div><div id="otherVal">0</div></div>
+            <div class="total"><div>Total Estimated Cost to Land (KES)</div><div id="totalKes">0</div></div>
+          </div>
+
+          <p style="font-size:12px;color:#6b7280;margin-top:8px">
+            Notes: CIF = Invoice + Freight + Insurance. Default tax rates shown are editable. KRA uses the CRSP list & valuation methods; confirm rates on the KRA website if you need exact official calculation. (Links below.)
+          </p>
+        </div>
+
+        <!-- Quick contact card -->
+        <div style="margin-top:12px;background:linear-gradient(180deg,#fff,#f7fbff);padding:12px;border-radius:10px;box-shadow:0 12px 30px rgba(30,60,120,0.04)">
+          <strong>Need help importing?</strong>
+          <p style="color:#475569;margin-top:8px;font-size:13px">We guide you through buying, inspection, shipping, clearance and registration.</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a href="tel:0707533344" style="flex:1;text-align:center;padding:8px;border-radius:8px;background:#3a86ff;color:white;text-decoration:none">Call Now</a>
+            <a href="mailto:info@sevenmotors.example" style="flex:1;text-align:center;padding:8px;border-radius:8px;border:1px solid #e6eefb;text-decoration:none;color:#0b1220">Email</a>
+          </div>
+        </div>
+
+        <!-- Sources / Quick links -->
+        <div style="margin-top:12px;font-size:13px;color:#475569">
+          <strong>Useful links (verify official rates):</strong>
+          <ul style="margin-top:6px;padding-left:18px">
+            <li><a href="https://www.kra.go.ke/images/publications/New-CRSP---July-2025.xlsx" target="_blank">KRA CRSP (July 2025)</a></li>
+            <li><a href="https://www.kra.go.ke/individual/importing/learn-about-importation/procedures-for-motor-vehicle" target="_blank">KRA — Motor Vehicle import guidance</a></li>
+            <li><a href="https://www.kra.go.ke/news-center/press-release/2224-clarification-on-implementation-of-revised-current-retail-selling-price-crsp-list-for-used-motor-vehicles" target="_blank">KRA press release (June 2025)</a></li>
+          </ul>
+        </div>
+
+      </aside>
+    </main>
+
+    <!-- Contact / Footer -->
+    <footer id="contact">
+      <div>
+        <div style="font-weight:700">Seven Motors</div>
+        <div style="font-size:13px;color:#6b7280">Croydon Building, Nairobi — Call 070 753 3344</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div style="font-size:13px;color:#6b7280">© <span id="year"></span> Seven Motors</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Fill current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Utility to format numbers
+    function fmt(n){ return (typeof n === 'number') ? n.toLocaleString('en-KE', {maximumFractionDigits:2}) : n }
+
+    function calculateImport(){
+      // Read user inputs
+      const invoice = Number(document.getElementById('invoice').value) || 0;
+      const freight = Number(document.getElementById('freight').value) || 0;
+      const insurance = Number(document.getElementById('insurance').value) || 0;
+      const exrate = Number(document.getElementById('exrate').value) || 1;
+
+      const importDutyPct = Number(document.getElementById('importDuty').value) || 0;
+      let excisePct = Number(document.getElementById('exciseDuty').value);
+      const vatPct = Number(document.getElementById('vat').value) || 0;
+      const idfPct = Number(document.getElementById('idf').value) || 0;
+      const rdlPct = Number(document.getElementById('rdl').value) || 0;
+
+      const engine = Number(document.getElementById('engine').value) || 0;
+      const fuel = document.getElementById('fuel').value || 'gasoline';
+
+      // If user left excise at zero, apply a simple default rule:
+      // default: 20% for engines <=1500cc, else 25% (but user can override)
+      if(!excisePct || excisePct === 0){
+        excisePct = engine <= 1500 ? 20 : 25;
+      }
+
+      // CIF in USD
+      const cifUsd = invoice + freight + insurance;
+
+      // CIF in KES
+      const cifKes = cifUsd * exrate;
+
+      // Import Duty (KES)
+      const importDutyVal = cifKes * (importDutyPct / 100);
+
+      // For excise KRA often bases excise on (CIF + Import Duty) or CRSP rules; here we apply excise on (CIF + Import Duty)
+      const exciseBase = cifKes + importDutyVal;
+      const exciseVal = exciseBase * (excisePct / 100);
+
+      // VAT on (CIF + Import Duty + Excise)
+      const vatBase = cifKes + importDutyVal + exciseVal;
+      const vatVal = vatBase * (vatPct / 100);
+
+      // IDF and RDL usually on CIF (some sources vary). We use CIF as default.
+      const idfVal = cifKes * (idfPct / 100);
+      const rdlVal = cifKes * (rdlPct / 100);
+
+      // Other costs: clearing, transport, documentation — present sample flat estimate (editable by user by modifying code)
+      const otherEstimate = 50000; // KES; change as needed or make a field
+
+      // Total
+      const totalKes = cifKes + importDutyVal + exciseVal + vatVal + idfVal + rdlVal + otherEstimate;
+
+      // Show results
+      document.getElementById('cifUsd').textContent = fmt(cifUsd) + ' USD';
+      document.getElementById('cifKes').textContent = fmt(cifKes) + ' KES';
+      document.getElementById('impDutyVal').textContent = fmt(importDutyVal) + ' KES (' + importDutyPct + '%)';
+      document.getElementById('exciseVal').textContent = fmt(exciseVal) + ' KES (' + excisePct + '%)';
+      document.getElementById('vatVal').textContent = fmt(vatVal) + ' KES (' + vatPct + '%)';
+      document.getElementById('idfVal').textContent = fmt(idfVal) + ' KES (' + idfPct + '%)';
+      document.getElementById('rdlVal').textContent = fmt(rdlVal) + ' KES (' + rdlPct + '%)';
+      document.getElementById('otherVal').textContent = fmt(otherEstimate) + ' KES';
+      document.getElementById('totalKes').textContent = fmt(totalKes) + ' KES';
+
+      document.getElementById('resultBox').style.display = 'block';
+    }
+
+    function resetCalc(){
+      document.getElementById('invoice').value = 5000;
+      document.getElementById('freight').value = 800;
+      document.getElementById('insurance').value = 100;
+      document.getElementById('exrate').value = 130;
+      document.getElementById('engine').value = 1500;
+      document.getElementById('importDuty').value = 35;
+      document.getElementById('exciseDuty').value = 20;
+      document.getElementById('vat').value = 16;
+      document.getElementById('idf').value = 3.5;
+      document.getElementById('rdl').value = 2;
+      document.getElementById('resultBox').style.display = 'none';
+    }
+
+    // Provide a tiny convenience: calculate sample on load
+    // calculateImport();
+
+  </script>
+</body>
+</html>
